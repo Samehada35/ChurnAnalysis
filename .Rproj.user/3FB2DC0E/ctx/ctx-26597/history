@@ -1,0 +1,512 @@
+churn.data2.original <- read.table(file="./data/DATA2_churn_analysis.csv", header=T, sep = ",")
+# 1. Statistiques Descriptives
+dim(churn.data1.original)
+#DATA1_churn_analysis contient 2000 observations de 14 variables (2000x14)
+dim(churn.data2.original)
+#DATA1_churn_analysis contient 3333 observations de 21 variables (2000x14)
+plot(churn.data1.original$Class)
+#Pour DATA1, il y'a 50% des individus qui ont churné
+plot(churn.data2.original$churn)
+#Pour DATA1, il y'a environ 15% des individus qui ont churné
+ggplot(churn.data1.original, aes(x=Class, fill=aug_user_type)) + geom_bar()
+#churn.data1.original$Class <- as.numeric(as.factor(churn.data1.original$Class))
+#churn.data2.original$churn <- as.numeric(as.factor(churn.data2.original$churn))
+library(ggplot2)
+churn.data1.original <- read.table(file="./data/DATA1_churn_analysis.csv", header=T, sep = ",")
+churn.data2.original <- read.table(file="./data/DATA2_churn_analysis.csv", header=T, sep = ",")
+# 1. Statistiques Descriptives
+dim(churn.data1.original)
+#DATA1_churn_analysis contient 2000 observations de 14 variables (2000x14)
+dim(churn.data2.original)
+#DATA1_churn_analysis contient 3333 observations de 21 variables (2000x14)
+#Valeurs manquantes
+plot(churn.data1.original$Class)
+#Pour DATA1, il y'a 50% des individus qui ont churné
+plot(churn.data2.original$churn)
+#Pour DATA1, il y'a environ 15% des individus qui ont churné
+#Proportion churn vs non churn pour les variables catégorielles de Data 1
+ggplot(churn.data1.original, aes(x=Class, fill=aug_user_type)) + geom_bar()
+ggplot(churn.data1.original, aes(x=Class, fill=sep_user_type)) + geom_bar()
+ggplot(churn.data1.original, aes(x=Class, fill=aug_fav_a)) + geom_bar()
+ggplot(churn.data1.original, aes(x=Class, fill=sep_fav_a)) + geom_bar()
+#Proportion churn vs non churn pour les variables catégorielles de Data 2
+ggplot(churn.data2.original, aes(x=churn, fill=state)) + geom_bar()
+ggplot(churn.data2.original, aes(x=churn, fill=phone.number)) + geom_bar()
+ggplot(churn.data2.original, aes(x=churn, fill=international.plan)) + geom_bar()
+#Proportion churn vs non churn pour les variables numériques de Data 1
+hist(x=churn.data1.original$Class)
+#Proportion churn vs non churn pour les variables numériques de Data 1
+hist(x=churn.data1.original$network_age)
+#Proportion churn vs non churn pour les variables numériques de Data 1
+hist(x=churn.data1.original$network_age[1])
+#Proportion churn vs non churn pour les variables numériques de Data 1
+hist(x=churn.data1.original$network_age[1:5])
+#Proportion churn vs non churn pour les variables numériques de Data 1
+hist(x=churn.data1.original$network_age[1:10])
+#Proportion churn vs non churn pour les variables numériques de Data 1
+hist(x=churn.data1.original$network_age[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$network_age[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$network_age[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$network_age[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_Total_Rev[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_Total_Rev[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$network_age[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$network_age[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_Total_Rev[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_Total_Rev[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_SMS_Rev[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_SMS_Rev[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_Data_Rev[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_Data_Rev[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_Data_Vol[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_Data_Vol[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_ONNET_REV[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_ONNET_REV[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_OFFNET_REV[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_OFFNET_REV[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_Complaint_count[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_Complaint_count[which(churn.data1.original$Class=="Active")])
+hist(x=as.number(churn.data1.original$Aggregate_Complaint_count[which(churn.data1.original$Class=="Churned")]))
+hist(x=churn.data1.original$Aggregate_Complaint_count[which(churn.data1.original$Class=="Active")])
+hist(x=as.numeric(churn.data1.original$Aggregate_Complaint_count[which(churn.data1.original$Class=="Churned")]))
+churn.data1.original$Aggregate_Complaint_count
+hist(x=as.numeric(churn.data1.original$Aggregate_Complaint_count[which(churn.data1.original$Class=="Churned")]))
+par(mfrow=c(1,2))
+hist(x=as.numeric(churn.data1.original$Aggregate_complaint_count[which(churn.data1.original$Class=="Churned")]))
+hist(x=churn.data1.original$Aggregate_complaint_count[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$network_age[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$network_age[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_Total_Rev[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_Total_Rev[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_SMS_Rev[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_SMS_Rev[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_Data_Rev[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_Data_Rev[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_Data_Vol[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_Data_Vol[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_ONNET_REV[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_ONNET_REV[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_OFFNET_REV[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_OFFNET_REV[which(churn.data1.original$Class=="Active")])
+par(mfrow=c(1,2))
+hist(x=churn.data1.original$Aggregate_complaint_count[which(churn.data1.original$Class=="Churned")])
+hist(x=churn.data1.original$Aggregate_complaint_count[which(churn.data1.original$Class=="Active")])
+#Proportion churn vs non churn pour les variables numériques de Data 2
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$account.length[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$account.length[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$area.code[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$area.code[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$number.vmail.messages[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$number.vmail.messages[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.day.minutes[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.day.minutes[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.day.calls[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.day.calls[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.day.charge[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.day.charge[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.eve.minutes[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.eve.minutes[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.eve.calls[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.eve.calls[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.eve.charge[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.eve.charge[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.night.minutes[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.night.minutes[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.night.calls[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.night.calls[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.night.charge[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.night.charge[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.intl.minutes[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.intl.minutes[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.intl.calls[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.intl.calls[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$total.intl.charge[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$total.intl.charge[which(churn.data2.original$churn=="False")])
+par(mfrow=c(1,2))
+hist(x=churn.data2.original$customer.service.calls[which(churn.data2.original$churn=="True")])
+hist(x=churn.data2.original$customer.service.calls[which(churn.data2.original$churn=="False")])
+# Matrices de correlation
+cor(churn.data1.original)
+churn.data1 <- churn.data1.original[,-21]
+churn.data1 <- churn.data1.original[,-14]
+churn.data2 <- churn.data2.original[,-21]
+churn.data1$aug_user_type <- as.numeric(as.factor(churn.data1$aug_user_type))
+churn.data1$sep_user_type <- as.numeric(as.factor(churn.data1$sep_user_type))
+churn.data1$aug_fav_a <- as.numeric(as.factor(churn.data1$aug_fav_a))
+churn.data1$sep_fav_a <- as.numeric(as.factor(churn.data1$sep_fav_a))
+churn.data2$state <- as.numeric(as.factor(churn.data2$state))
+churn.data2$phone.number <- as.numeric(as.factor(churn.data2$phone.number))
+churn.data2$international.plan <- as.numeric(as.factor(churn.data2$international.plan))
+churn.data2$voice.mail.plan <- as.numeric(as.factor(churn.data2$voice.mail.plan))
+# Matrices de correlation
+cor(churn.data1.original)
+cor(churn.data1)
+cor(churn.data2)
+churn.data1.cor <- cor(churn.data1)
+churn.data2.cor <- cor(churn.data2)
+View(churn.data1.cor)
+View(churn.data2.cor)
+# 2. Arbres de décision
+require(tree)
+install.packages("tree")
+churn.data1.original$aug_user_type <- as.numeric(as.factor(churn.data1.original$aug_user_type))
+churn.data1.original$sep_user_type <- as.numeric(as.factor(churn.data1.original$sep_user_type))
+churn.data1.original$aug_fav_a <- as.numeric(as.factor(churn.data1.original$aug_fav_a))
+churn.data1.original$sep_fav_a <- as.numeric(as.factor(churn.data1.original$sep_fav_a))
+churn.data1.original$Class <- as.numeric(as.factor(churn.data1.original$Class))
+churn.data2.original$state <- as.numeric(as.factor(churn.data2.original$state))
+churn.data2.original$phone.number <- as.numeric(as.factor(churn.data2.original$phone.number))
+churn.data2.original$international.plan <- as.numeric(as.factor(churn.data2.original$international.plan))
+churn.data2.original$voice.mail.plan <- as.numeric(as.factor(churn.data2.original$voice.mail.plan))
+churn.data2.original$churn <- as.numeric(as.factor(churn.data2.original$churn))
+churn.data1 <- churn.data1.original[,-14]
+churn.data2 <- churn.data2.original[,-21]
+tree.churn <- tree(Class~.,data=churn.data1.original)
+# 2. Arbres de décision
+require(tree)
+# 2. Arbres de décision
+library(tree)
+churn.data1.tree <- tree(Class~.,data=churn.data1.original)
+summary(churn.data1.tree)
+plot(churn.data1.tree)
+text(churn.data1.tree)
+text(churn.data1.tree,pretty=0)
+library(tree)
+churn.data1.tree <- tree(Class~.,data=churn.data1.original)
+summary(churn.data1.tree)
+plot(churn.data1.tree)
+text(churn.data1.tree,pretty=0)
+library(tree)
+churn.data1.tree <- tree(Class~.,data=churn.data1.original)
+summary(churn.data1.tree)
+par(mfrow=c(1,1))
+plot(churn.data1.tree)
+text(churn.data1.tree,pretty=0)
+plot(churn.data1.tree)
+text(churn.data1.tree,pretty=1)
+plot(churn.data1.tree)
+text(churn.data1.tree,pretty=1)
+churn.data2.tree <- tree(Class~.,data=churn.data2.original)
+summary(churn.data2.tree)
+par(mfrow=c(1,1))
+plot(churn.data2.tree)
+text(churn.data2.tree,pretty=0)
+churn.data2.tree <- tree(churn~.,data=churn.data2.original)
+summary(churn.data2.tree)
+par(mfrow=c(1,1))
+plot(churn.data2.tree)
+text(churn.data2.tree,pretty=0)
+View(churn.data2.tree)
+library(rpart)
+churn.data1.tree.model <- rpart(Class~.,data=churn.data1.original)
+summary(churn.data1.tree)
+par(mfrow=c(1,1))
+plot(churn.data1.tree.model)
+text(churn.data1.tree,digits=3)
+churn.data2.tree.model <- rpart(churn~.,data=churn.data2.original)
+summary(churn.data2.tree)
+par(mfrow=c(1,1))
+plot(churn.data2.tree.model)
+text(churn.data2.tree,digits=3)
+library(rpart)
+churn.data1.tree.model <- rpart(Class~.,data=churn.data1.original)
+summary(churn.data1.tree)
+par(mfrow=c(1,1))
+plot(churn.data1.tree.model)
+text(churn.data1.tree.model,digits=3)
+churn.data2.tree.model <- rpart(churn~.,data=churn.data2.original)
+summary(churn.data2.tree)
+par(mfrow=c(1,1))
+plot(churn.data2.tree.model)
+text(churn.data2.tree.model,digits=3)
+#On va maintenant simplifier nos 2 arbres de décision, d'une première part en supprimant les attributs liés
+#qui n'apportent pas d'informations en plus
+churn.data1.tree.modelsimplified <- rpart(Class~.-Aggregate_OFFNET_REV-Aggregate_Data_Rev,aug_user_type.,data=churn.data1.original)
+#On va maintenant simplifier nos 2 arbres de décision, d'une première part en supprimant les attributs liés
+#qui n'apportent pas d'informations en plus
+churn.data1.tree.modelsimplified <- rpart(Class~.-Aggregate_OFFNET_REV-Aggregate_Data_Rev-aug_user_type.,data=churn.data1.original)
+View(churn.data1)
+#On va maintenant simplifier nos 2 arbres de décision, d'une première part en supprimant les attributs liés
+#qui n'apportent pas d'informations en plus
+churn.data1.tree.modelsimplified <- rpart(Class~.-Aggregate_OFFNET_REV-Aggregate_Data_Rev-aug_user_type.,data=churn.data1.original)
+#On va maintenant simplifier nos 2 arbres de décision, d'une première part en supprimant les attributs liés
+#qui n'apportent pas d'informations en plus
+churn.data1.tree.modelsimplified <- rpart(Class~.-Aggregate_OFFNET_REV-Aggregate_Data_Rev-aug_user_type,data=churn.data1.original)
+summary(churn.data1.tree.modelsimplified)
+plot(churn.data1.tree.modelsimplified)
+text(churn.data1.tree.modelsimplified,digits=3)
+install.packages("caret")
+model2 <- train(
+Class ~., data = churn.data1.original, method = "rpart",trControl = trainControl("cv", number = 10), tuneLength = 10
+)
+library(caret)
+library(rpart)
+library(lattice)
+library(ggplot2)
+library(caret)
+model2 <- train(
+Class ~., data = churn.data1.original, method = "rpart",trControl = trainControl("cv", number = 10), tuneLength = 10
+)
+plot(model2)
+model2$bestTune
+plot(model2$finalModel)
+text(model2$finalModel,  digits = 3)
+churn.data1.tree.model <- rpart(Class~.,data=churn.data1.original)
+summary(churn.data1.tree)
+plot(churn.data1.tree.model)
+text(churn.data1.tree.model,digits=3)
+churn.data2.tree.modelsimplified <- train(churn ~.,
+data = churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.modelsimplified$finalModel)
+text(churn.data2.tree.modelsimplified$finalModel,  digits = 3)
+churn.data2.tree.model <- rpart(churn~.,data=churn.data2.original)
+summary(churn.data2.tree)
+plot(churn.data2.tree.model)
+text(churn.data2.tree.model,digits=3)
+churn.data2.tree.modelsimplified <- train(churn ~.,
+data = churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.modelsimplified$finalModel)
+text(churn.data2.tree.modelsimplified$finalModel,  digits = 3)
+plot(churn.data1.tree.modelsimplified)
+plot(churn.data1.tree.modelsimplified)
+plot(churn.data2.tree.modelsimplified)
+churn.data2.tree.modelsimplified$bestTune
+View(churn.data1)
+churn.data1.tree.model <- rpart(Class~.-network_age-sep_fav_a,data=churn.data1.original)
+summary(churn.data1.tree)
+plot(churn.data1.tree.model)
+text(churn.data1.tree.model,digits=3)
+churn.data1.tree.model <- rpart(Class~.,data=churn.data1.original)
+summary(churn.data1.tree)
+plot(churn.data1.tree.model)
+text(churn.data1.tree.model,digits=3)
+churn.data1.tree.model <- rpart(Class~.-network_age,data=churn.data1.original)
+summary(churn.data1.tree)
+plot(churn.data1.tree.model)
+text(churn.data1.tree.model,digits=3)
+churn.data1.tree.model <- rpart(Class~.-network_age-Aggregate_Data_Rev-Aggregate_Data_Vol-Aggregate_Calls-Aggregate_OFFNET_REV-Aggregate_complaint_count-aug_user_type-sep_user_type-aug_fav_a,data=churn.data1.original)
+summary(churn.data1.tree)
+plot(churn.data1.tree.model)
+text(churn.data1.tree.model,digits=3)
+churn.data1.tree.model <- rpart(Class~.-network_age,data=churn.data1.original)
+summary(churn.data1.tree)
+plot(churn.data1.tree.model)
+text(churn.data1.tree.model,digits=3)
+churn.data2.tree.model <- rpart(churn~.,data=churn.data2.original)
+summary(churn.data2.tree)
+plot(churn.data2.tree.model)
+text(churn.data2.tree.model,digits=3)
+churn.data2.tree.modelsimplified <- train(churn ~.,
+data = churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.modelsimplified$finalModel)
+text(churn.data2.tree.modelsimplified$finalModel,  digits = 3)
+plot(churn.data2.tree.modelsimplified)
+churn.data2.tree.modelsimplified$bestTune
+churn.data2.tree.model <- rpart(churn~-state-account.length-area.code-phone.number-international.plan-total.day.calls-total.day.charge-total.eve.calls-total.eve.charge-total.night.minutes-total.night.calls-total.night.charge-total.intl.charge.-,data=churn.data1.original)
+summary(churn.data2.tree)
+plot(churn.data2.tree.model)
+text(churn.data2.tree.model,digits=3)
+#Après avoir vu quels attributs sont les moins importants, nous refaisons une classification sans ces attributs
+churn.data1.tree.finalModel <- train(Class~.-network_age-Aggregate_Data_Rev-Aggregate_Data_Vol-Aggregate_Calls-Aggregate_OFFNET_REV-Aggregate_complaint_count-aug_user_type-sep_user_type-aug_fav_a,
+data=churn.data1.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data1.tree.finalModel$finalModel)
+text(churn.data1.tree.finalModel$finalModel,  digits = 3)
+churn.data2.tree.finalModel <- train(churn~-state-account.length-area.code-phone.number-international.plan-total.day.calls-total.day.charge-total.eve.calls-total.eve.charge-total.night.minutes-total.night.calls-total.night.charge-total.intl.charge.-,
+data=churn.data1.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.finalModel$finalModel)
+text(churn.data2.tree.finalModel$finalModel,digits=3)
+churn.data2.tree.finalModel <- train(churn~-state-account.length-area.code-phone.number-international.plan-total.day.calls-total.day.charge-total.eve.calls-total.eve.charge-total.night.minutes-total.night.calls-total.night.charge-total.intl.charge,
+data=churn.data1.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.finalModel$finalModel)
+text(churn.data2.tree.finalModel$finalModel,digits=3)
+churn.data2.tree.finalModel <- train(churn~.-state-account.length-area.code-phone.number-international.plan-total.day.calls-total.day.charge-total.eve.calls-total.eve.charge-total.night.minutes-total.night.calls-total.night.charge-total.intl.charge,
+data=churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.finalModel$finalModel)
+text(churn.data2.tree.finalModel$finalModel,digits=3)
+churn.data2.tree.modelsimplified <- train(churn ~.,
+data = churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.modelsimplified$finalModel)
+text(churn.data2.tree.modelsimplified$finalModel,  digits = 3)
+churn.data2.tree.modelsimplified <- train(churn ~.,
+data = churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.modelsimplified$finalModel)
+text(churn.data2.tree.modelsimplified$finalModel,  digits = 3)
+churn.data2.tree.finalModel <- train(churn~.-state-account.length-area.code-phone.number-international.plan-total.day.calls-total.day.charge-total.eve.calls-total.eve.charge-total.night.minutes-total.night.calls-total.night.charge-total.intl.charge,
+data=churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.finalModel$finalModel)
+text(churn.data2.tree.finalModel$finalModel,digits=3)
+churn.data2.tree.modelsimplified <- train(churn ~.,
+data = churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.modelsimplified$finalModel)
+text(churn.data2.tree.modelsimplified$finalModel,  digits = 3)
+churn.data2.tree.finalModel <- train(churn~.-state-account.length-area.code-phone.number-total.day.calls-total.day.charge-total.eve.calls-total.eve.charge-total.night.minutes-total.night.calls-total.night.charge-total.intl.charge,
+data=churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.finalModel$finalModel)
+text(churn.data2.tree.finalModel$finalModel,digits=3)
+churn.data1.tree.modelsimplified <- train(Class ~.,
+data = churn.data1.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data1.tree.modelsimplified$finalModel)
+text(churn.data1.tree.modelsimplified$finalModel,digits = 3)
+churn.data1.tree.finalModel <- train(Class~.-network_age-Aggregate_Data_Rev-Aggregate_Data_Vol-Aggregate_Calls-Aggregate_OFFNET_REV-Aggregate_complaint_count-aug_user_type-sep_user_type-aug_fav_a,
+data=churn.data1.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data1.tree.finalModel$finalModel)
+text(churn.data1.tree.finalModel$finalModel,digits = 3)
+churn.data1.tree.modelsimplified <- train(Class ~.,
+data = churn.data1.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data1.tree.modelsimplified$finalModel)
+text(churn.data1.tree.modelsimplified$finalModel,digits = 3)
+churn.data1.tree.finalModel <- train(Class~.-Aggregate_Data_Rev-Aggregate_Data_Vol-Aggregate_Calls-Aggregate_OFFNET_REV-Aggregate_complaint_count-aug_user_type-sep_user_type-aug_fav_a,
+data=churn.data1.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data1.tree.finalModel$finalModel)
+text(churn.data1.tree.finalModel$finalModel,digits = 3)
+churn.data2.tree.finalModel <- train(churn~.-state-account.length-area.code-phone.number-total.day.calls-total.day.charge-total.eve.calls-total.eve.charge-total.night.minutes-total.night.calls-total.night.charge-total.intl.charge,
+data=churn.data2.original,
+method = "rpart",
+trControl = trainControl("cv", number = 10),
+tuneLength = 10)
+plot(churn.data2.tree.finalModel$finalModel)
+text(churn.data2.tree.finalModel$finalModel,digits=3)
+churn.data2.tree.model <- rpart(churn~.,data=churn.data2.original)
+summary(churn.data2.tree)
+plot(churn.data2.tree.model)
+text(churn.data2.tree.model,digits=3)
+?rpart
+install.packages("mlbench")
+trainset <- trainset[,-trainColNum]
+# Load the mlbench library
+library(mlbench)
+# If not available, install the package
+install.packages("mlbench")
+# Load the Ionosphere data in the R environment
+data("Ionosphere")
+# View the data
+View(Ionosphere)
+# Load the rpart library
+library(rpart)
+# If not available, install the package
+install.packages("rpart")
+# Set a seed
+set.seed(42)
+# Add a column to the dataset and insert 1 foo training, else 0
+Ionosphere[, "train"] <- ifelse(runif(nrow(Ionosphere))<0.8,1,0)
+# Split the Ionosphere data
+trainset <- Ionosphere[Ionosphere$train == 1,]
+testset <- Ionosphere[Ionosphere$train == 0,]
+# The column ’train’ is now useless ; we remove it
+trainColNum <- grep("train", names(trainset))
+trainset <- trainset[,-trainColNum]
+testset <- testset[,-trainColNum]
+# Build the model
+rpart_model <- rpart(Class~., data = trainset, method = "class")
+# Plot the tree
+plot(rpart_model)
+text(rpart_model)
+# Load the mlbench library
+library(mlbench)
+# If not available, install the package
+install.packages("mlbench")
+# Load the Ionosphere data in the R environment
+data("Ionosphere")
+# View the data
+View(Ionosphere)
+# Load the rpart library
+library(rpart)
+# If not available, install the package
+install.packages("rpart")
+# Set a seed
+set.seed(42)
+# Add a column to the dataset and insert 1 foo training, else 0
+Ionosphere[, "train"] <- ifelse(runif(nrow(Ionosphere))<0.8,1,0)
+# Split the Ionosphere data
+trainset <- Ionosphere[Ionosphere$train == 1,]
+testset <- Ionosphere[Ionosphere$train == 0,]
+# The column ’train’ is now useless ; we remove it
+trainColNum <- grep("train", names(trainset))
+trainset <- trainset[,-trainColNum]
+testset <- testset[,-trainColNum]
+# Build the model
+rpart_model <- rpart(Class~., data = trainset, method = "class")
+# Plot the tree
+plot(rpart_model)
+text(rpart_model)
+install.packages("mlbench")

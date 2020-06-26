@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1574453671299.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1578225156",
+    "id" : "CD6BA981",
+    "lastKnownWriteTime" : 1574461967,
+    "last_content_update" : 1574461967916,
+    "path" : "~/ProjetDataScience/src.R",
+    "project_path" : "src.R",
+    "properties" : {
+        "cursorPosition" : "283,45",
+        "scrollLine" : "207",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,9 @@
+{
+    "path" : "~/ProjetDataScience/data",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
